@@ -405,7 +405,7 @@
             ],
             "settings": {
                 "foreground": "#79759c", // 淡紫色
-                "fontStyle": "" // 常规样式
+                "fontStyle": "bold" // 常规样式
             }
         },
         // 特殊普通变量(和自定义扩展标签名保持一致)
@@ -947,7 +947,7 @@
             ],
             "settings": {
                 "foreground": "#79759C", // 蓝紫色（与JS常量一致）
-                "fontStyle": ""
+                "fontStyle": "bold"
             }
         },
         // 通用变量
