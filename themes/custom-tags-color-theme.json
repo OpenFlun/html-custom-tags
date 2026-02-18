@@ -404,7 +404,7 @@
                 "variable.other.constant.property.js", // 对象常量属性
             ],
             "settings": {
-                "foreground": "#7a65cb", // 蓝紫色
+                "foreground": "#79759c", // 淡紫色
                 "fontStyle": "" // 常规样式
             }
         },
