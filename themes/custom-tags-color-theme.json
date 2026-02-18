@@ -946,7 +946,7 @@
                 "keyword.other.definition.ini" // env 常量名
             ],
             "settings": {
-                "foreground": "#7a65cb", // 蓝紫色（与JS常量一致）
+                "foreground": "#79759C", // 蓝紫色（与JS常量一致）
                 "fontStyle": ""
             }
         },
