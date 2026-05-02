@@ -1,9 +1,8 @@
 // modules/tagDetailsTemplate.js
-const vscode = require('vscode');
-const { TAG_TYPES, TAG_DISPLAY_NAMES } = require('./constants');
-const { sanitizeTagName } = require('./tagUtils');
+import { TAG_TYPES, TAG_DISPLAY_NAMES } from './constants.js';
+import { sanitizeTagName } from './tagUtils.js';
 
-module.exports.generateTagDetailsHTML = (tagName, statistics) => {
+const generateTagDetailsHTML = (tagName, statistics) => {
     return `
     <!DOCTYPE html>
     <html lang="zh-CN">
@@ -182,3 +181,5 @@ module.exports.generateTagDetailsHTML = (tagName, statistics) => {
     </html>
     `;
 };
+
+export { generateTagDetailsHTML };

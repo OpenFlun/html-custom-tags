@@ -1,23 +1,23 @@
 // ======================
 // 核心依赖导入
 // ======================
-const vscode = require('vscode');
-const { Disposable } = require('vscode');
-const path = require('path');
+import * as vs from 'vscode';
+import { join as pJoin } from 'node:path';
 
 // ======================
 // 本地模块导入
 // ======================
-const { CONFIG_KEYS, TEXT_SNIPPET_RANGE, TAG_TYPES, TAG_DISPLAY_NAMES, RECOMMENDED_THEME, TAG_REGEX, OPENING_TAG_REGEX
-} = require('./modules/constants');
-const { generateTagDetailsHTML } = require('./modules/tagDetailsTemplate');
-const { sanitizeTagName, isInsideTagPosition } = require('./modules/tagUtils');
+import {
+    CONFIG_KEYS, TEXT_SNIPPET_RANGE, TAG_TYPES, TAG_DISPLAY_NAMES, RECOMMENDED_THEME, TAG_REGEX, OPENING_TAG_REGEX
+} from './modules/constants.js';
+import { generateTagDetailsHTML } from './modules/tagDetailsTemplate.js';
+import { sanitizeTagName, isInsideTagPosition } from './modules/tagUtils.js';
 
 // ======================
 // 编辑器辅助函数
 // ======================
 function getActiveHtmlEditor() {
-    const editor = vscode.window.activeTextEditor;
+    const editor = vs.window.activeTextEditor;
     return editor && editor.document.languageId === 'html' ? editor : null;
 }
 
@@ -41,7 +41,7 @@ class PanelManager {
 // 配置管理器
 // ======================
 class ConfigManager {
-    static config = vscode.workspace.getConfiguration('editor');
+    static config = vs.workspace.getConfiguration('editor');
     static originalSettings = null;
 
     static updateEditorConfig(settings, configurationTarget) {
@@ -59,7 +59,7 @@ class ConfigManager {
         try {
             this.updateEditorConfig({
                 [CONFIG_KEYS.QUICK_SUGGESTIONS]: false, [CONFIG_KEYS.SUGGEST_ON_TRIGGER]: false, [CONFIG_KEYS.WORD_BASED]: false
-            }, vscode.ConfigurationTarget.Workspace);
+            }, vs.ConfigurationTarget.Workspace);
         } catch (error) {
             console.error('禁用提示功能失败:', error.message);
         }
@@ -70,7 +70,7 @@ class ConfigManager {
 
         try {
             Object.entries(this.originalSettings).forEach(([key, value]) => {
-                this.config.update(key, value, vscode.ConfigurationTarget.Workspace);
+                this.config.update(key, value, vs.ConfigurationTarget.Workspace);
             });
         } catch (error) {
             console.error('恢复提示功能失败:', error.message);
@@ -81,14 +81,14 @@ class ConfigManager {
 // ======================
 // 标签数据模型
 // ======================
-class CustomTagItem extends vscode.TreeItem {
+class CustomTagItem extends vs.TreeItem {
     constructor(label, realTagName, tagType, extensionUri) {
-        super(label, vscode.TreeItemCollapsibleState.None);
+        super(label, vs.TreeItemCollapsibleState.None);
         this.description = TAG_DISPLAY_NAMES[tagType] || '未知标签';
         this.tooltip = `${this.label} - ${this.description}`;
         this.realTagName = realTagName, this.tagType = tagType;
 
-        const iconPath = vscode.Uri.file(path.join(extensionUri.fsPath, 'icons',
+        const iconPath = vs.Uri.file(pJoin(extensionUri.fsPath, 'icons',
             tagType === TAG_TYPES.OPENING ? 'start.png' : 'end.png'));
 
         this.iconPath = { light: iconPath, dark: iconPath };
@@ -129,7 +129,7 @@ class TagFinder {
 
             tags.push({
                 name: safeName, type: type, fullText: match[0],
-                range: new vscode.Range(document.positionAt(match.index), document.positionAt(match.index + match[0].length))
+                range: new vs.Range(document.positionAt(match.index), document.positionAt(match.index + match[0].length))
             });
         }
 
@@ -162,7 +162,7 @@ class DecorationManager {
         this.currentDecorations = [], this.correspondingDecorations = [];
 
         // 开标签装饰器
-        this.openingDecorationType = vscode.window.createTextEditorDecorationType({
+        this.openingDecorationType = vs.window.createTextEditorDecorationType({
             backgroundColor: 'rgba(67, 160, 71, 0.4)', // 绿色背景
             borderRadius: '3px',
             border: '1px solid #43A047',  // 绿色边框
@@ -170,7 +170,7 @@ class DecorationManager {
         });
 
         // 闭标签装饰器
-        this.closingDecorationType = vscode.window.createTextEditorDecorationType({
+        this.closingDecorationType = vs.window.createTextEditorDecorationType({
             backgroundColor: 'rgba(239, 83, 80, 0.4)', // 红色背景
             borderRadius: '3px',
             border: '1px solid #EF5350',  // 红色边框
@@ -178,7 +178,7 @@ class DecorationManager {
         });
 
         // 对应开标签装饰器
-        this.correspondingOpeningDecorationType = vscode.window.createTextEditorDecorationType({
+        this.correspondingOpeningDecorationType = vs.window.createTextEditorDecorationType({
             backgroundColor: 'rgba(67, 160, 71, 0.1)', // 淡绿色背景
             borderRadius: '3px',
             border: '1px dashed #43A047',  // 绿色虚线边框
@@ -186,7 +186,7 @@ class DecorationManager {
         });
 
         // 对应闭标签装饰器
-        this.correspondingClosingDecorationType = vscode.window.createTextEditorDecorationType({
+        this.correspondingClosingDecorationType = vs.window.createTextEditorDecorationType({
             backgroundColor: 'rgba(239, 83, 80, 0.1)', // 淡红色背景
             borderRadius: '3px',
             border: '1px dashed #EF5350',  // 红色虚线边框
@@ -261,7 +261,7 @@ class DecorationManager {
 // ======================
 class CustomTagProvider {
     constructor(extensionUri) {
-        this.extensionUri = extensionUri, this._onDidChangeTreeData = new vscode.EventEmitter();
+        this.extensionUri = extensionUri, this._onDidChangeTreeData = new vs.EventEmitter();
         this.onDidChangeTreeData = this._onDidChangeTreeData.event, this.tags = [];
     }
 
@@ -418,7 +418,7 @@ class CommandHandler {
             editor.edit(editBuilder => editBuilder.insert(position.translate(0, 1), `[~${tagName}]`))
                 .then(() => {
                     const newPosition = position.translate(0, 1);
-                    editor.selection = new vscode.Selection(newPosition, newPosition);
+                    editor.selection = new vs.Selection(newPosition, newPosition);
                 });
         }
     }
@@ -426,24 +426,24 @@ class CommandHandler {
     static async copyAllTags() {
         const editor = getActiveHtmlEditor();
         if (!editor) {
-            vscode.window.showWarningMessage('请在HTML文件中使用此功能');
+            vs.window.showWarningMessage('请在HTML文件中使用此功能');
             return;
         }
 
         try {
             const tags = TagFinder.findAllCustomTags(editor.document);
             if (tags.length === 0) {
-                vscode.window.showInformationMessage('未找到模板标签');
+                vs.window.showInformationMessage('未找到模板标签');
                 return;
             }
 
             const uniqueTagSet = new Set(tags.map(tag => tag.fullText));
             const tagsText = [...uniqueTagSet].join('\n\n');
 
-            await vscode.env.clipboard.writeText(tagsText);
-            vscode.window.showInformationMessage(`已复制 ${uniqueTagSet.size} 个标签到剪贴板`);
+            await vs.env.clipboard.writeText(tagsText);
+            vs.window.showInformationMessage(`已复制 ${uniqueTagSet.size} 个标签到剪贴板`);
         } catch (error) {
-            vscode.window.showErrorMessage(`复制标签失败: ${error.message}`);
+            vs.window.showErrorMessage(`复制标签失败: ${error.message}`);
         }
     }
 
@@ -456,17 +456,17 @@ class CommandHandler {
 
         if (matchedTags.length > 0) {
             const firstMatch = matchedTags[0];
-            editor.selection = new vscode.Selection(firstMatch.range.start, firstMatch.range.end);
+            editor.selection = new vs.Selection(firstMatch.range.start, firstMatch.range.end);
             editor.revealRange(firstMatch.range);
 
             TagHighlighter.setActiveTag(editor, firstMatch, tags); // 高亮当前标签和对应标签
         }
-        else vscode.window.showWarningMessage(`未找到 "${tagName}" ${TAG_DISPLAY_NAMES[tagType]}`);
+        else vs.window.showWarningMessage(`未找到 "${tagName}" ${TAG_DISPLAY_NAMES[tagType]}`);
     }
 
     static showTagDetails(node) {
         if (!node) {
-            vscode.window.showErrorMessage('无法获取标签信息');
+            vs.window.showErrorMessage('无法获取标签信息');
             return;
         }
 
@@ -480,14 +480,14 @@ class CommandHandler {
 
         const editor = getActiveHtmlEditor();
         if (!editor) {
-            vscode.window.showErrorMessage('没有活动的编辑器');
+            vs.window.showErrorMessage('没有活动的编辑器');
             return;
         }
 
         const document = editor.document;
         const tags = TagFinder.findAllCustomTags(document);
-        const panel = vscode.window.createWebviewPanel(
-            'tagDetail', `标签统计: ${tagName}`, vscode.ViewColumn.Beside, { enableScripts: true, retainContextWhenHidden: true }
+        const panel = vs.window.createWebviewPanel(
+            'tagDetail', `标签统计: ${tagName}`, vs.ViewColumn.Beside, { enableScripts: true, retainContextWhenHidden: true }
         );
 
         const statistics = TagStatistics.calculate(tagName, tags);
@@ -495,10 +495,10 @@ class CommandHandler {
 
         panel.webview.onDidReceiveMessage(message => {
             if (message.command === 'navigate') {
-                const startPos = new vscode.Position(message.startLine, message.startChar);
-                const endPos = new vscode.Position(message.endLine, message.endChar);
-                const selection = new vscode.Selection(startPos, endPos);
-                editor.selection = selection, editor.revealRange(selection, vscode.TextEditorRevealType.InCenter);
+                const startPos = new vs.Position(message.startLine, message.startChar);
+                const endPos = new vs.Position(message.endLine, message.endChar);
+                const selection = new vs.Selection(startPos, endPos);
+                editor.selection = selection, editor.revealRange(selection, vs.TextEditorRevealType.InCenter);
 
                 // 点击后高亮标签和对应标签
                 const clickedTag = tags.find(tag =>
@@ -518,13 +518,13 @@ class CommandHandler {
 // ======================
 class ThemeManager {
     static async checkTheme(context) {
-        const config = vscode.workspace.getConfiguration(), currentTheme = config.get('workbench.colorTheme');
+        const config = vs.workspace.getConfiguration(), currentTheme = config.get('workbench.colorTheme');
         if (currentTheme === RECOMMENDED_THEME) return;
 
         const disablePrompt = context.globalState.get('disableThemePrompt', false);
         if (disablePrompt) return;
 
-        const choice = await vscode.window.showWarningMessage(
+        const choice = await vs.window.showWarningMessage(
             'HTML Custom Tags扩展：推荐使用专用主题',
             {
                 modal: true, detail: `当前主题 "${currentTheme}" 无法使用模板标签的高亮效果;推荐应用 "${RECOMMENDED_THEME}" 主题;`
@@ -533,8 +533,8 @@ class ThemeManager {
         );
 
         if (choice === '应用推荐主题') {
-            await config.update('workbench.colorTheme', RECOMMENDED_THEME, vscode.ConfigurationTarget.Workspace);
-            vscode.window.showInformationMessage("应用主题成功");
+            await config.update('workbench.colorTheme', RECOMMENDED_THEME, vs.ConfigurationTarget.Workspace);
+            vs.window.showInformationMessage("应用主题成功");
         }
         else if (choice === '不再提示') await context.globalState.update('disableThemePrompt', true);
     }
@@ -546,9 +546,11 @@ class ThemeManager {
 const tagDetailPanels = new PanelManager();
 let stateManager;
 
-// ======================
-// 插件激活/反激活
-// ======================
+
+/**
+ * 插件激活/反激活
+ * @param {vs.ExtensionContext} context - 插件上下文对象
+ */
 function activate(context) {
     console.log('HTML Custom Tags Highlighter activated');
 
@@ -557,7 +559,7 @@ function activate(context) {
 
     // 创建标签提供器和视图
     const tagProvider = new CustomTagProvider(context.extensionUri);
-    const treeView = vscode.window.createTreeView('html-custom-tags-view', {
+    const treeView = vs.window.createTreeView('html-custom-tags-view', {
         treeDataProvider: tagProvider, title: '模板标签', showCollapseAll: true
     });
 
@@ -566,38 +568,38 @@ function activate(context) {
 
     // 注册命令
     const commands = [
-        vscode.commands.registerCommand('html-custom-tags.jumpToTag', CommandHandler.jumpToTag),
-        vscode.commands.registerCommand('html-custom-tags.showTagDetails', CommandHandler.showTagDetails),
-        vscode.commands.registerCommand('html-custom-tags.copyAllTags', CommandHandler.copyAllTags),
+        vs.commands.registerCommand('html-custom-tags.jumpToTag', CommandHandler.jumpToTag),
+        vs.commands.registerCommand('html-custom-tags.showTagDetails', CommandHandler.showTagDetails),
+        vs.commands.registerCommand('html-custom-tags.copyAllTags', CommandHandler.copyAllTags),
     ];
 
     // 注册事件监听器
-    const interceptor = vscode.languages.registerCompletionItemProvider('html', {
+    const interceptor = vs.languages.registerCompletionItemProvider('html', {
         provideCompletionItems: (document, position) =>
-            TagFinder.checkIfInsideCustomTag(document, position) ? new vscode.CompletionList([], true) : undefined
+            TagFinder.checkIfInsideCustomTag(document, position) ? new vs.CompletionList([], true) : undefined
     });
 
     // 事件监听列表
     const eventListeners = [
         interceptor, treeView,
-        vscode.window.onDidChangeTextEditorSelection(e => {
+        vs.window.onDidChangeTextEditorSelection(e => {
             handleStateUpdate();
             TagHighlighter.updateHighlightFromPosition(e.textEditor, e.selections[0].active); // 高亮更新入口
         }),
-        vscode.workspace.onDidChangeTextDocument(e => {
+        vs.workspace.onDidChangeTextDocument(e => {
             // 文档变化时清除缓存
             TagFinder.updateCache(e.document), CommandHandler.autoCloseCustomTag(e), handleStateUpdate();
             TagHighlighter.handleDocumentChange(e);                                // 文档变化处理
         }),
-        vscode.window.onDidChangeActiveTextEditor(() => {
+        vs.window.onDidChangeActiveTextEditor(() => {
             handleStateUpdate();
-            vscode.commands.executeCommand('setContext', 'showCustomTagsView', !!getActiveHtmlEditor());
+            vs.commands.executeCommand('setContext', 'showCustomTagsView', !!getActiveHtmlEditor());
         }),
-        vscode.workspace.onDidCloseTextDocument(doc => TagFinder.clearCache(doc)), // 文档关闭时清除缓存
-        new Disposable(() => stateManager.dispose()),
+        vs.workspace.onDidCloseTextDocument(doc => TagFinder.clearCache(doc)), // 文档关闭时清除缓存
+        new vs.Disposable(() => stateManager.dispose()),
 
         // 窗口焦点变化时更新高亮
-        vscode.window.onDidChangeWindowState(state => {
+        vs.window.onDidChangeWindowState(state => {
             if (state.focused) {
                 const editor = getActiveHtmlEditor();
                 if (editor) TagHighlighter.updateHighlightFromPosition(editor, editor.selection.active);
@@ -606,21 +608,24 @@ function activate(context) {
     ];
 
     handleStateUpdate();                                                      // 初始状态检查
-    vscode.commands.executeCommand('setContext', 'showCustomTagsView', true); // 设置视图可见性上下文
+    vs.commands.executeCommand('setContext', 'showCustomTagsView', true); // 设置视图可见性上下文
 
     // 主题检查
     const showThemePrompt = async () => {
-        if (vscode.window.state.focused) ThemeManager.checkTheme(context);
+        if (vs.window.state.focused) ThemeManager.checkTheme(context);
     };
 
     setTimeout(showThemePrompt, 3000);                          // 当插件激活时,如果VS Code已经获得焦点,延迟检查主题
     context.subscriptions.push(...commands, ...eventListeners); // 注册所有订阅
 }
 
+/**
+ * 插件停用时清理资源
+ */
 function deactivate() {
     console.log('HTML Custom Tags Highlighter deactivated');
     ConfigManager.restoreSuggestions(), tagDetailPanels.disposeAll(), stateManager?.dispose();
     TagHighlighter.dispose(); // 释放高亮资源
 }
 
-module.exports = { activate, deactivate };
+export { activate, deactivate };
