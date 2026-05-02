@@ -2,9 +2,10 @@
   "name": "html-custom-tags",
   "displayName": "HTML Custom Tags Highlighter",
   "description": "Syntax highlighting for custom [!tag][~tag] in HTML files with enhanced bracket coloring. Supports tag navigation, statistics and customization.",
-  "version": "1.0.178",
+  "version": "1.0.179",
   "publisher": "flun",
   "type": "module",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/flunGit/html-custom-tags.git"

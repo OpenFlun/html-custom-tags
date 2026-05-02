@@ -2,6 +2,13 @@
 import { TAG_TYPES, TAG_DISPLAY_NAMES } from './constants.js';
 import { sanitizeTagName } from './tagUtils.js';
 
+/**
+ * 生成标签详情的HTML内容
+ * >查看定义:@see {@link generateTagDetailsHTML}
+ * @param {string} tagName - 标签名称
+ * @param {Object} statistics - 标签统计信息
+ * @returns {string} 生成的HTML字符串
+ */
 const generateTagDetailsHTML = (tagName, statistics) => {
     return `
     <!DOCTYPE html>

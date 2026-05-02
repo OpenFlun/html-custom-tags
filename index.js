@@ -1,14 +1,7 @@
-// ======================
-// 核心依赖导入
-// ======================
 import * as vs from 'vscode';
 import { join as pJoin } from 'node:path';
-
-// ======================
-// 本地模块导入
-// ======================
 import {
-    CONFIG_KEYS, TEXT_SNIPPET_RANGE, TAG_TYPES, TAG_DISPLAY_NAMES, RECOMMENDED_THEME, TAG_REGEX, OPENING_TAG_REGEX
+    TAG_REGEX, OPENING_TAG_REGEX, TEXT_SNIPPET_RANGE, RECOMMENDED_THEME, CONFIG_KEYS, TAG_TYPES, TAG_DISPLAY_NAMES
 } from './modules/constants.js';
 import { generateTagDetailsHTML } from './modules/tagDetailsTemplate.js';
 import { sanitizeTagName, isInsideTagPosition } from './modules/tagUtils.js';
