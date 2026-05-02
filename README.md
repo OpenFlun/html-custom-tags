@@ -24,7 +24,7 @@
 >
 sh
 ```sh
-	npm init -y				    # 初始化项目
+	npm init -y				     # 初始化项目
 	npm i @flun/html-template    # 本地
 	# 或
 	npm i -g @flun/html-template # 全局
