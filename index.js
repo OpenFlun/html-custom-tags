@@ -6,17 +6,13 @@ import {
 import { generateTagDetailsHTML } from './modules/tagDetailsTemplate.js';
 import { sanitizeTagName, isInsideTagPosition } from './modules/tagUtils.js';
 
-// ======================
 // 编辑器辅助函数
-// ======================
 function getActiveHtmlEditor() {
     const editor = vs.window.activeTextEditor;
     return editor && editor.document.languageId === 'html' ? editor : null;
 }
 
-// ======================
 // 面板管理器
-// ======================
 class PanelManager {
     constructor() { this.panels = new Map(); }
 
@@ -30,9 +26,7 @@ class PanelManager {
     disposeAll() { this.panels.forEach(panel => panel.dispose()), this.panels.clear() }
 }
 
-// ======================
 // 配置管理器
-// ======================
 class ConfigManager {
     static config = vs.workspace.getConfiguration('editor');
     static originalSettings = null;
@@ -71,9 +65,7 @@ class ConfigManager {
     }
 }
 
-// ======================
 // 标签数据模型
-// ======================
 class CustomTagItem extends vs.TreeItem {
     constructor(label, realTagName, tagType, extensionUri) {
         super(label, vs.TreeItemCollapsibleState.None);
@@ -89,9 +81,7 @@ class CustomTagItem extends vs.TreeItem {
     }
 }
 
-// ======================
 // 标签查找器（带缓存）
-// ======================
 class TagFinder {
     static tagCache = {};
 
@@ -147,9 +137,7 @@ class TagFinder {
     }
 }
 
-// ======================
 // 装饰器管理器（用于标签高亮）
-// ======================
 class DecorationManager {
     constructor() {
         this.currentDecorations = [], this.correspondingDecorations = [];
@@ -249,9 +237,7 @@ class DecorationManager {
     }
 }
 
-// ======================
 // 标签数据提供器
-// ======================
 class CustomTagProvider {
     constructor(extensionUri) {
         this.extensionUri = extensionUri, this._onDidChangeTreeData = new vs.EventEmitter();
@@ -281,9 +267,7 @@ class CustomTagProvider {
     getChildren(element) { return element ? [] : this.tags; }
 }
 
-// ======================
 // 状态管理器（带防抖）
-// ======================
 class StateManager {
     constructor() { this.isInsideCustomTag = false, this.debounceTimeout = null; }
 
@@ -309,9 +293,7 @@ class StateManager {
     dispose() { clearTimeout(this.debounceTimeout); }
 }
 
-// ======================
 // 标签统计工具
-// ======================
 class TagStatistics {
     static calculate(tagName, tags) {
         const filteredTags = tags.filter(tag => tag.name === tagName);
@@ -327,9 +309,7 @@ class TagStatistics {
     }
 }
 
-// ======================
 // 标签高亮管理器（重构）
-// ======================
 class TagHighlighter {
     static decorationManager = new DecorationManager();
     static activeEditor = null;
@@ -387,9 +367,7 @@ class TagHighlighter {
     static dispose() { this.clearActiveTag(), this.decorationManager.dispose(); }
 }
 
-// ======================
 // 命令处理器
-// ======================
 class CommandHandler {
     static autoCloseCustomTag(event) {
         const editor = getActiveHtmlEditor();
@@ -506,9 +484,7 @@ class CommandHandler {
     }
 }
 
-// ======================
 // 主题提示器
-// ======================
 class ThemeManager {
     static async checkTheme(context) {
         const config = vs.workspace.getConfiguration(), currentTheme = config.get('workbench.colorTheme');
@@ -533,15 +509,12 @@ class ThemeManager {
     }
 }
 
-// ======================
 // 全局状态
-// ======================
 const tagDetailPanels = new PanelManager();
 let stateManager;
 
-
 /**
- * 插件激活/反激活
+ * 插件激活/反激活(VScode接口函数)
  * @param {vs.ExtensionContext} context - 插件上下文对象
  */
 function activate(context) {
@@ -613,7 +586,7 @@ function activate(context) {
 }
 
 /**
- * 插件停用时清理资源
+ * 插件停用时清理资源(VScode接口函数)
  */
 function deactivate() {
     console.log('HTML Custom Tags Highlighter deactivated');
