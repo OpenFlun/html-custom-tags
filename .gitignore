@@ -1,5 +1,5 @@
-*.vsix
 .env
+*.vsix
 *.ps1
-/secret_folder/
 *.key
+/secret_folder/
