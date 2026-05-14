@@ -90,7 +90,7 @@ vsce package           # 打包
 
 code --install-extension "html-custom-tags-1.0.3.vsix"    # 安装
 
-vsce publish           # 发布
+vsce publish patch     # 发布(patch小版本,minor中版本,major大版本)
 
 vsce publish 1.0.3     # 发布指定版本
 ```
@@ -275,7 +275,7 @@ gh repo create 仓库名 --public --push --source .      # 创建远程仓库并
 >
 
 ```PowerShell
-        git remote add origin https://github.com/flunGit/html-custom-tags.git
+        git remote add origin https://github.com/OpenFlun/html-custom-tags.git
 
         git push -u origin main --force
 ```

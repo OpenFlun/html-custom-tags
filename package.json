@@ -8,12 +8,13 @@
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flunGit/html-custom-tags.git"
+    "url": "https://github.com/OpenFlun/html-custom-tags.git"
   },
-  "homepage": "https://github.com/flunGit/html-custom-tags#readme",
+  "homepage": "https://github.com/OpenFlun/html-custom-tags#readme",
   "bugs": {
-    "url": "https://github.com/flunGit/html-custom-tags/issues"
+    "url": "https://github.com/OpenFlun/html-custom-tags/issues"
   },
+  "license": "ISC",
   "engines": {
     "vscode": "^1.89.0"
   },
