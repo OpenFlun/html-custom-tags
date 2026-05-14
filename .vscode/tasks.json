@@ -2,12 +2,52 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "发布到VScode市场",
+			"label": "发布到VScode市场(小版本)",
 			"type": "shell",
 			"command": "pwsh",
 			"args": [
 				"-File",
-				"${workspaceFolder}/publish.ps1"
+				"${workspaceFolder}/publish.ps1",
+				"-VersionType",
+				"patch"
+			],
+			"group": "build",
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"showReuseMessage": false,
+				"close": true
+			}
+		},
+		{
+			"label": "发布到VScode市场(中版本)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-File",
+				"${workspaceFolder}/publish.ps1",
+				"-VersionType",
+				"minor"
+			],
+			"group": "build",
+			"problemMatcher": "$msCompile",
+			"presentation": {
+				"reveal": "always",
+				"panel": "shared",
+				"showReuseMessage": false,
+				"close": true
+			}
+		},
+		{
+			"label": "发布到VScode市场(大版本)",
+			"type": "shell",
+			"command": "pwsh",
+			"args": [
+				"-File",
+				"${workspaceFolder}/publish.ps1",
+				"-VersionType",
+				"major"
 			],
 			"group": "build",
 			"problemMatcher": "$msCompile",
