@@ -1,6 +1,6 @@
 ### 1.创建扩展项目
 >
-> 选择：
+> 选择:
 
 ```PowerShell
     yo code
@@ -78,7 +78,7 @@ code --disable-extensions --disable-workspace-trust "项目路径"
 ### 11.启动调试会话:(按F5)
 >
 >1. 打开测试文件 test.html
->2. 使用作用域检查器：
+>2. 使用作用域检查器:
     >按 Ctrl+Shift+P 输入 `Developer: Inspect Editor Tokens and Scopes`
 
 ---
@@ -113,7 +113,7 @@ vsce publish 1.0.3     # 发布指定版本
 ---
 ### 14.直接在项目设置中自定义颜色
 > >
-> >在​项目根目录​，通过 .vscode/settings.json文件自定义颜色：
+> >在​项目根目录​,通过 .vscode/settings.json文件自定义颜色:
 
 ```JSON
 {
@@ -129,7 +129,7 @@ vsce publish 1.0.3     # 发布指定版本
                 "scope": "custom-tag.flag",
                 "settings": {"foreground": "#C792EA"}
             },
-            // 锈棕色标签名（粗体）
+            // 锈棕色标签名(粗体)
             {
                 "scope": "custom-tag.name",
                 "settings": {
@@ -151,7 +151,7 @@ npm uninstall -g @vscode/vsce --force    # 强制清理旧安装
 
 npm cache clean --force                  # 清理npm缓存
 
-npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份运行PowerShell）
+npm install -g @vscode/vsce --force      # 重新安装vsce(以管理员身份运行PowerShell)
 
 ```
 
@@ -193,7 +193,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
         >>> 1. 浏览器安装header editor插件
         >>> 2. 导入代理规则(VS.json)
 <!-- markdownlint-disable MD029 -->
->2. 添加许可证 LICENSE文件（根目录）PS指令:
+>2. 添加许可证 LICENSE文件(根目录)PS指令:
     >> - 创建 MIT 许可证文件
 
 ```PowerShell
@@ -214,13 +214,13 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
 > >1. 在发布者管理页面
         <https://dev.azure.com/china0826/_usersSettings/tokens>
         点击 Create Token
-        Organization（组织）: china0826
+        Organization(组织): china0826
 > >2. 设置名称
         flun-VScode-Tag    有效期最长1年;
 > >3. 权限范围勾选 Marketplace 选择全部:
-        >>>- ☑️ Marketplace（市场）> Acquire（获取权限）
-        >>>- ☑️ Marketplace（市场）> Manage（管理权限）
-        >>>- ☑️ Marketplace（市场）> Publish（发布权限）
+        >>>- ☑️ Marketplace(市场)> Acquire(获取权限)
+        >>>- ☑️ Marketplace(市场)> Manage(管理权限)
+        >>>- ☑️ Marketplace(市场)> Publish(发布权限)
 > >4. 发布指令
         ` vsce publish `
         或指定版本
@@ -229,7 +229,7 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
 <!-- markdownlint-disable MD029 -->
 >4. 手动上传
     在发布者管理页面点击 New extension → 上传在Visual Studio Code
-    生成的 .vsix 文件。
+    生成的 .vsix 文件;
 
 ---
 
@@ -238,20 +238,20 @@ npm install -g @vscode/vsce --force      # 重新安装vsce（以管理员身份
 ```PowerShell
 git init      # 初始化本地仓库
 
-git add .     # 添加所有文件（确保已创建.vscodeignore过滤不需要的文件）
+git add .     # 添加所有文件(确保已创建.vscodeignore过滤不需要的文件)
 
 git commit -m "提交说明"      #提交初始版本
 
-gh repo create 仓库名 --public --push --source .      # 创建远程仓库并推送（核心命令！）
+gh repo create 仓库名 --public --push --source .      # 创建远程仓库并推送(核心命令!)
 ```
 
 ---
 
 ### 20.重新提交分支步骤:(GH)
 >
-> 1. 备份当前代码（复制整个项目文件夹到安全位置）
+> 1. 备份当前代码(复制整个项目文件夹到安全位置)
 <!-- markdownlint-disable MD029 -->
-> 2. 彻底重置Git历史（保留当前代码）
+> 2. 彻底重置Git历史(保留当前代码)
 >
 ```PowerShell
         Remove-Item -Recurse -Force .\.git     # 删除所有Git历史
@@ -270,7 +270,7 @@ gh repo create 仓库名 --public --push --source .      # 创建远程仓库并
         git commit -m "全新提交文件"
 ```
 
-> 4. 设置正确的.gitignore（确保包含所有敏感文件）
+> 4. 设置正确的.gitignore(确保包含所有敏感文件)
 
 <!-- markdownlint-disable MD028 -->
 > 5. 强制推送到全新仓库

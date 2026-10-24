@@ -1,96 +1,113 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"label": "发布到VScode市场(小版本)",
-			"type": "shell",
-			"command": "pwsh",
-			"args": [
-				"-File",
-				"${workspaceFolder}/publish.ps1",
-				"-VersionType",
-				"patch"
-			],
-			"group": "build",
-			"problemMatcher": "$msCompile",
-			"presentation": {
-				"reveal": "always",
-				"panel": "shared",
-				"showReuseMessage": false,
-				"close": true
-			}
-		},
-		{
-			"label": "发布到VScode市场(中版本)",
-			"type": "shell",
-			"command": "pwsh",
-			"args": [
-				"-File",
-				"${workspaceFolder}/publish.ps1",
-				"-VersionType",
-				"minor"
-			],
-			"group": "build",
-			"problemMatcher": "$msCompile",
-			"presentation": {
-				"reveal": "always",
-				"panel": "shared",
-				"showReuseMessage": false,
-				"close": true
-			}
-		},
-		{
-			"label": "发布到VScode市场(大版本)",
-			"type": "shell",
-			"command": "pwsh",
-			"args": [
-				"-File",
-				"${workspaceFolder}/publish.ps1",
-				"-VersionType",
-				"major"
-			],
-			"group": "build",
-			"problemMatcher": "$msCompile",
-			"presentation": {
-				"reveal": "always",
-				"panel": "shared",
-				"showReuseMessage": false,
-				"close": true
-			}
-		},
-		{
-			"label": "打包扩展",
-			"type": "shell",
-			"command": "pwsh",
-			"args": [
-				"-File",
-				"${workspaceFolder}/package.ps1"
-			],
-			"group": "build",
-			"problemMatcher": "$msCompile",
-			"presentation": {
-				"reveal": "always",
-				"panel": "shared",
-				"showReuseMessage": false,
-				"close": true
-			}
-		},
-		{
-			"label": "安装扩展",
-			"type": "shell",
-			"command": "pwsh",
-			"args": [
-				"-File",
-				"${workspaceFolder}/setup.ps1"
-			],
-			"group": "build",
-			"problemMatcher": [],
-			"presentation": {
-				"reveal": "always",
-				"panel": "shared",
-				"showReuseMessage": false,
-				"close": true
-			}
-		}
-	]
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "发布到VScode市场(小版本)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "${workspaceFolder}/publish.ps1",
+        "-VersionType",
+        "patch"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    },
+    {
+      "label": "发布到VScode市场(中版本)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "${workspaceFolder}/publish.ps1",
+        "-VersionType",
+        "minor"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    },
+    {
+      "label": "发布到VScode市场(大版本)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "${workspaceFolder}/publish.ps1",
+        "-VersionType",
+        "major"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    },
+    {
+      "label": "打包扩展",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "${workspaceFolder}/package.ps1"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    },
+    {
+      "label": "安装扩展",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-File",
+        "${workspaceFolder}/setup.ps1"
+      ],
+      "group": "build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    },
+    {
+      "label": "同步LICENSE",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-Command",
+        "license-sync -Apply"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "close": true
+      }
+    }
+  ]
 }

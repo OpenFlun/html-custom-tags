@@ -13,11 +13,11 @@
         "list.activeSelectionBackground": "#094771", // 选中项背景色
         "list.inactiveSelectionBackground": "#1e1e1f", // 非活动选中项背景色
         "list.hoverBackground": "#2A2D2E", // 悬停项背景色
-        // 树形视图颜色设置（适用于资源管理器）
+        // 树形视图颜色设置(适用于资源管理器)
         "tree.indentGuidesStroke": "#404040", // 缩进指南线颜色
         // 状态栏颜色设置
         "statusBar.background": "#2d2d30", // 状态栏背景色
-        "statusBar.foreground": "#208f2b", // 状态栏前景色（文字颜色）
+        "statusBar.foreground": "#208f2b", // 状态栏前景色(文字颜色)
         "statusBarItem.hoverBackground": "#20036a", // 状态栏项悬停时的背景色
         "statusBarItem.remoteBackground": "#3838d7", // 远程连接状态栏项的背景色
         "statusBar.debuggingBackground": "#cc6633", // 调试状态下的状态栏背景色
@@ -47,7 +47,7 @@
                 "entity.other.attribute-name.html" // 属性名 class, id 等
             ],
             "settings": {
-                "foreground": "#0E639C" // 暗蓝色，VS Code 默认属性色
+                "foreground": "#0E639C" // 暗蓝色,VS Code 默认属性色
             }
         },
         // 自定义HTML文件全局引号和文件外引号
@@ -88,7 +88,7 @@
                 "comment.line.html" // 行内注释
             ],
             "settings": {
-                "foreground": "#6A9955", // 绿色，VS Code 默认注释色
+                "foreground": "#6A9955", // 绿色,VS Code 默认注释色
                 "fontStyle": "italic" // 斜体增强可读性
             }
         },
@@ -98,11 +98,11 @@
                 "meta.tag.text.html", // 标签内的文本内容
             ],
             "settings": {
-                "foreground": "#7d7373" // 浅灰色，默认文本颜色
+                "foreground": "#7d7373" // 浅灰色,默认文本颜色
             }
         },
         // =====================================
-        // CSS 相关规则（在 <style> 标签内）
+        // CSS 相关规则(在 <style> 标签内)
         // =====================================
         {
             "scope": [
@@ -169,7 +169,7 @@
         {
             "scope": "string.quoted.css", // 'Arial', "sans-serif" 等
             "settings": {
-                "foreground": "#CE9178" // 棕色，VS Code 默认字符串色
+                "foreground": "#CE9178" // 棕色,VS Code 默认字符串色
             }
         },
         // 媒体查询 关键字 和其它关键字
@@ -233,17 +233,17 @@
         {
             "scope": [
                 "comment.block.css", // /* CSS 块注释 */
-                "comment.line.css" // CSS 行注释（虽然标准不支持，但预处理器可能使用）
+                "comment.line.css" // CSS 行注释(虽然标准不支持,但预处理器可能使用)
             ],
             "settings": {
-                "foreground": "#6A9955", // 绿色，保持与HTML/JS注释一致
+                "foreground": "#6A9955", // 绿色,保持与HTML/JS注释一致
                 "fontStyle": "italic" // 斜体增强可读性
             }
         },
         // =====================================
-        // JavaScript 相关规则（在 <script> 标签内）
+        // JavaScript 相关规则(在 <script> 标签内)
         // =====================================
-        // JavaScript 关键字（扩展范围）
+        // JavaScript 关键字(扩展范围)
         {
             "name": "JavaScript 关键字",
             "scope": [
@@ -466,7 +466,7 @@
                 "fontStyle": "" // 常规样式
             }
         },
-        // 运算符（增强)
+        // 运算符(增强)
         {
             "name": "运算符",
             "scope": [
@@ -483,7 +483,7 @@
                 "fontStyle": "" // 常规样式
             }
         },
-        // 特殊运算符（和扩展标志保持一致)
+        // 特殊运算符(和扩展标志保持一致)
         {
             "name": "特殊运算符",
             "scope": [
@@ -491,7 +491,7 @@
                 "punctuation.accessor.optional.js", // ?.可选链运算符
             ],
             "settings": {
-                "foreground": "#197d3c", // 中绿色，突出标志
+                "foreground": "#197d3c", // 中绿色,突出标志
                 "fontStyle": "bold"
             }
         },
@@ -564,7 +564,7 @@
                 "fontStyle": "bold"
             }
         },
-        // 注释（合并文档注释作用域）
+        // 注释(合并文档注释作用域)
         {
             "name": "JavaScript 注释",
             "scope": [
@@ -586,7 +586,7 @@
                 "custom-tag.bracket.close" //  ]
             ],
             "settings": {
-                "foreground": "#8d7272", // 紫灰色，突出括号
+                "foreground": "#8d7272", // 紫灰色,突出括号
                 "fontStyle": "bold" // 粗体增强可见性
             }
         },
@@ -596,21 +596,21 @@
                 "custom-tag.open-flag" //  !
             ],
             "settings": {
-                "foreground": "#197d3c", // 中绿色，突出标志
+                "foreground": "#197d3c", // 中绿色,突出标志
                 "fontStyle": "bold"
             }
         },
         {
             "scope": "custom-tag.close-flag", // ~
             "settings": {
-                "foreground": "#c52020", // 红色，突出标志
+                "foreground": "#c52020", // 红色,突出标志
                 "fontStyle": "bold "
             }
         },
         {
             "scope": "custom-tag.name", // tag,extendsFileName,includeFileName
             "settings": {
-                "foreground": "#9c5a0a", // 锈棕色，突出标签名
+                "foreground": "#9c5a0a", // 锈棕色,突出标签名
                 "fontStyle": "bold" // 粗体增强可读性
             }
         },
@@ -653,7 +653,7 @@
             }
         },
         {
-            // 字符类规则（如 [a-z,...]）
+            // 字符类规则(如 [a-z,...])
             "name": "regexp 字符类",
             "scope": [
                 "constant.other.character-class.set.regexp", // 字符类内容
@@ -694,7 +694,7 @@
             }
         },
         {
-            // 量词规则（如 * + ? {n}）
+            // 量词规则(如 * + ? {n})
             "name": "regexp 量词",
             "scope": [
                 "keyword.operator.quantifier.regexp", // 量词符号
@@ -705,7 +705,7 @@
             }
         },
         {
-            // 分组规则（如 (?:...)）
+            // 分组规则(如 (?:...))
             "name": "regexp 分组",
             "scope": [
                 "meta.group.regexp", // 分组主体
@@ -716,7 +716,7 @@
             }
         },
         {
-            // 锚点规则（如 ^ $ \b）
+            // 锚点规则(如 ^ $ \b)
             "name": "regexp 锚点",
             "scope": [
                 "keyword.control.anchor.regexp", // 位置锚点
@@ -727,7 +727,7 @@
             }
         },
         {
-            // 特殊字符类（如 \d \s \w）
+            // 特殊字符类(如 \d \s \w)
             "name": "regexp 预定义字符类",
             "scope": [
                 "constant.other.character-class.regexp"
@@ -737,7 +737,7 @@
             }
         },
         {
-            // 反向引用（如 \1）
+            // 反向引用(如 \1)
             "name": "regexp 反向引用",
             "scope": [
                 "keyword.other.back-reference.regexp",
@@ -748,7 +748,7 @@
             }
         },
         // =====================================
-        // 通用语法规则（覆盖所有文件类型）
+        // 通用语法规则(覆盖所有文件类型)
         // =====================================
         // 控制流元素
         {
@@ -772,7 +772,7 @@
                 "keyword.control.else.php", // php else
             ],
             "settings": {
-                "foreground": "#1b9653", // 绿色（与JS关键字一致）
+                "foreground": "#1b9653", // 绿色(与JS关键字一致)
                 "fontStyle": "bold"
             }
         },
@@ -792,7 +792,7 @@
                 "variable.other.object.property.java", // java class
             ],
             "settings": {
-                "foreground": "#c157b8", // 紫色（与JS类/函数关键字一致）
+                "foreground": "#c157b8", // 紫色(与JS类/函数关键字一致)
                 "fontStyle": "bold"
             }
         },
@@ -808,7 +808,7 @@
                 "source.python", // python 来源
             ],
             "settings": {
-                "foreground": "#4EC9B0", // 青色（与JS内置方法一致）
+                "foreground": "#4EC9B0", // 青色(与JS内置方法一致)
                 "fontStyle": ""
             }
         },
@@ -841,7 +841,7 @@
                 "heading.1.markdown", // md 1级标题
             ],
             "settings": {
-                "foreground": "#ad3177", // 粉紫色（与JS循环关键字一致）
+                "foreground": "#ad3177", // 粉紫色(与JS循环关键字一致)
                 "fontStyle": "italic"
             }
         },
@@ -858,7 +858,7 @@
                 "heading.5.markdown", // md 5级标题
             ],
             "settings": {
-                "foreground": "#9b5b6d", // 淡紫色（与JS类成员一致）
+                "foreground": "#9b5b6d", // 淡紫色(与JS类成员一致)
                 "fontStyle": ""
             }
         },
@@ -873,7 +873,7 @@
                 "heading.3.markdown", // md 3级标题
             ],
             "settings": {
-                "foreground": "#a9a93a", // 亮黄色（与JS函数名一致）
+                "foreground": "#a9a93a", // 亮黄色(与JS函数名一致)
                 "fontStyle": ""
             }
         },
@@ -882,7 +882,7 @@
             "name": "通用函数参数",
             "scope": "variable.parameter",
             "settings": {
-                "foreground": "#4d4d0e", // 暗黄色（与JS函数参数一致）
+                "foreground": "#4d4d0e", // 暗黄色(与JS函数参数一致)
                 "fontStyle": "bold"
             }
         },
@@ -916,7 +916,7 @@
                 "markup.underline.link.image.markdown", // markdown
             ],
             "settings": {
-                "foreground": "#2aa18a", // 青色（与JS内置对象一致）
+                "foreground": "#2aa18a", // 青色(与JS内置对象一致)
                 "fontStyle": ""
             }
         },
@@ -931,7 +931,7 @@
                 "support.function.sql" // SQL函数
             ],
             "settings": {
-                "foreground": "#409d8b", // 淡青色（与JS内置方法一致）
+                "foreground": "#409d8b", // 淡青色(与JS内置方法一致)
                 "fontStyle": ""
             }
         },
@@ -946,7 +946,7 @@
                 "keyword.other.definition.ini" // env 常量名
             ],
             "settings": {
-                "foreground": "#79759C", // 蓝紫色（与JS常量一致）
+                "foreground": "#79759C", // 蓝紫色(与JS常量一致)
                 "fontStyle": "bold"
             }
         },
@@ -960,7 +960,7 @@
                 "variable.other.definition.java", // java 变量名
             ],
             "settings": {
-                "foreground": "#82541c", // 锈棕色（与JS变量一致）
+                "foreground": "#82541c", // 锈棕色(与JS变量一致)
                 "fontStyle": "bold"
             }
         },
@@ -969,7 +969,7 @@
             "name": "通用数字",
             "scope": "constant.numeric",
             "settings": {
-                "foreground": "#4f9f24", // 浅绿色（与JS数字一致）
+                "foreground": "#4f9f24", // 浅绿色(与JS数字一致)
                 "fontStyle": ""
             }
         },
@@ -982,7 +982,7 @@
                 "punctuation.definition.markdown"
             ],
             "settings": {
-                "foreground": "#7a6e17", // 深黄色（与HTML引号一致）
+                "foreground": "#7a6e17", // 深黄色(与HTML引号一致)
                 "fontStyle": "bold"
             }
         },
@@ -994,7 +994,7 @@
                 "markup.inline.raw.string.markdown", // markdown
             ],
             "settings": {
-                "foreground": "#006400", // 深绿色（与全局HTML一致）
+                "foreground": "#006400", // 深绿色(与全局HTML一致)
                 "fontStyle": ""
             }
         },
@@ -1018,7 +1018,7 @@
                 "variable.other.jsdoc",
             ],
             "settings": {
-                "foreground": "#236e2e", // 浅绿色（与jS模板一致）
+                "foreground": "#236e2e", // 浅绿色(与jS模板一致)
                 "fontStyle": ""
             }
         },
@@ -1035,7 +1035,7 @@
                 "keyword.other.special-method.batchfile", // bat off
             ],
             "settings": {
-                "foreground": "#84d684", // 亮绿色（与JS操作符一致）
+                "foreground": "#84d684", // 亮绿色(与JS操作符一致)
                 "fontStyle": ""
             }
         },
@@ -1053,7 +1053,7 @@
                 "keyword.other.new.php", // php new
             ],
             "settings": {
-                "foreground": "#C792EA", // 紫色（与JS特殊操作符一致）
+                "foreground": "#C792EA", // 紫色(与JS特殊操作符一致)
                 "fontStyle": "bold"
             }
         },
@@ -1069,7 +1069,7 @@
                 "punctuation.definition.annotation.java", // java @
             ],
             "settings": {
-                "foreground": "#0c794b", // 淡绿色（与JS点操作符一致）
+                "foreground": "#0c794b", // 淡绿色(与JS点操作符一致)
                 "fontStyle": "bold"
             }
         },
@@ -1088,7 +1088,7 @@
                 "fenced_code.block.language.markdown", // Markdown 语言引用
             ],
             "settings": {
-                "foreground": "#569CD6", // 蓝色（与HTML标签一致）
+                "foreground": "#569CD6", // 蓝色(与HTML标签一致)
                 "fontStyle": ""
             }
         },
@@ -1106,7 +1106,7 @@
                 "source.ini" // env 常量值
             ],
             "settings": {
-                "foreground": "#0E639C", // 暗蓝色（与HTML属性一致）
+                "foreground": "#0E639C", // 暗蓝色(与HTML属性一致)
                 "fontStyle": ""
             }
         },
@@ -1172,7 +1172,7 @@
                 "punctuation.section.array.end.php", // php
             ],
             "settings": {
-                "foreground": "#8d7272", // 紫灰色（与自定义标签括号一致）
+                "foreground": "#8d7272", // 紫灰色(与自定义标签括号一致)
                 "fontStyle": "bold"
             }
         },
@@ -1252,7 +1252,7 @@
                 "comment.line.double-slash.json.comments" // JSONC注释
             ],
             "settings": {
-                "foreground": "#6A9955", // 绿色（与现有注释一致）
+                "foreground": "#6A9955", // 绿色(与现有注释一致)
                 "fontStyle": "italic"
             }
         },

@@ -41,7 +41,7 @@
           "scope": "resource",
           "type": "string",
           "default": "#8d7272",
-          "description": "设置最外层大括号的颜色（十六进制颜色代码）"
+          "description": "设置最外层大括号的颜色(十六进制颜色代码)"
         },
         "html-custom-tags.enableTagNavigation": {
           "type": "boolean",

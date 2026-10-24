@@ -45,7 +45,8 @@ class ConfigManager {
     static disableSuggestions() {
         try {
             this.updateEditorConfig({
-                [CONFIG_KEYS.QUICK_SUGGESTIONS]: false, [CONFIG_KEYS.SUGGEST_ON_TRIGGER]: false, [CONFIG_KEYS.WORD_BASED]: false
+                [CONFIG_KEYS.QUICK_SUGGESTIONS]: false, [CONFIG_KEYS.SUGGEST_ON_TRIGGER]: false,
+                [CONFIG_KEYS.WORD_BASED]: false
             }, vs.ConfigurationTarget.Workspace);
         } catch (error) {
             console.error('禁用提示功能失败:', error.message);
@@ -77,11 +78,14 @@ class CustomTagItem extends vs.TreeItem {
             tagType === TAG_TYPES.OPENING ? 'start.png' : 'end.png'));
 
         this.iconPath = { light: iconPath, dark: iconPath };
-        this.command = { command: 'html-custom-tags.jumpToTag', title: '跳转到标签', arguments: [this.realTagName, tagType] };
+        this.command = {
+            command: 'html-custom-tags.jumpToTag', title: '跳转到标签',
+            arguments: [this.realTagName, tagType]
+        };
     }
 }
 
-// 标签查找器（带缓存）
+// 标签查找器(带缓存)
 class TagFinder {
     static tagCache = {};
 
@@ -137,7 +141,7 @@ class TagFinder {
     }
 }
 
-// 装饰器管理器（用于标签高亮）
+// 装饰器管理器(用于标签高亮)
 class DecorationManager {
     constructor() {
         this.currentDecorations = [], this.correspondingDecorations = [];
@@ -194,7 +198,8 @@ class DecorationManager {
         if (!this.isValidTagPosition(editor.document, tag.range)) return;
 
         // 根据标签类型选择装饰器
-        const currentDecorationType = tag.type === TAG_TYPES.OPENING ? this.openingDecorationType : this.closingDecorationType;
+        const currentDecorationType = tag.type === TAG_TYPES.OPENING
+            ? this.openingDecorationType : this.closingDecorationType;
 
         // 高亮当前标签
         this.currentDecorations.push({ range: tag.range });
@@ -267,7 +272,7 @@ class CustomTagProvider {
     getChildren(element) { return element ? [] : this.tags; }
 }
 
-// 状态管理器（带防抖）
+// 状态管理器(带防抖)
 class StateManager {
     constructor() { this.isInsideCustomTag = false, this.debounceTimeout = null; }
 
@@ -309,7 +314,7 @@ class TagStatistics {
     }
 }
 
-// 标签高亮管理器（重构）
+// 标签高亮管理器(重构)
 class TagHighlighter {
     static decorationManager = new DecorationManager();
     static activeEditor = null;
@@ -458,7 +463,8 @@ class CommandHandler {
         const document = editor.document;
         const tags = TagFinder.findAllCustomTags(document);
         const panel = vs.window.createWebviewPanel(
-            'tagDetail', `标签统计: ${tagName}`, vs.ViewColumn.Beside, { enableScripts: true, retainContextWhenHidden: true }
+            'tagDetail', `标签统计: ${tagName}`, vs.ViewColumn.Beside,
+            { enableScripts: true, retainContextWhenHidden: true }
         );
 
         const statistics = TagStatistics.calculate(tagName, tags);
@@ -494,9 +500,10 @@ class ThemeManager {
         if (disablePrompt) return;
 
         const choice = await vs.window.showWarningMessage(
-            'HTML Custom Tags扩展：推荐使用专用主题',
+            'HTML Custom Tags扩展:推荐使用专用主题',
             {
-                modal: true, detail: `当前主题 "${currentTheme}" 无法使用模板标签的高亮效果;推荐应用 "${RECOMMENDED_THEME}" 主题;`
+                modal: true,
+                detail: `当前主题 "${currentTheme}" 无法使用模板标签的高亮效果;推荐应用 "${RECOMMENDED_THEME}" 主题;`
             },
             '应用推荐主题', '不再提示'
         );
